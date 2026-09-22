@@ -1,0 +1,38 @@
+# VkQLoRA.rs — cargo workspace root (virtual manifest).
+#
+# Guix (`guix.scm`) remains the reproducible toolchain provider;
+# this file just lets plain `cargo` build/test the Rust crates at once:
+#
+#   cargo build --offline     # default members (needs deps cached once)
+#   cargo test --offline      # full Rust test suite
+#   cargo test -p qlora-core  # or one crate
+#
+# `qlora-python` stays a member (so `-p` and the unified lock cover it)
+# but is excluded from the default set: its pyo3 build script needs a
+# `python3` interpreter on PATH, and the crate is normally built via
+# maturin inside `guix shell` anyway:
+#
+#   cd qlora-python && maturin develop   # needs venv (see README)
+#
+# Each member keeps its own Cargo.lock and still builds standalone from
+# its own directory (e.g. `cd qlora-core && cargo test --offline`).
+# The workspace-level Cargo.lock (created on first build) pins the
+# unified dependency set.
+
+[workspace]
+resolver = "2"
+members = [
+    "qlora-core",
+    "qlora-wgpu",
+    "qlora-python",
+    "qlora-io",
+    "qlora-tokenizer",
+    "qlora-model",
+]
+default-members = [
+    "qlora-core",
+    "qlora-wgpu",
+    "qlora-io",
+    "qlora-tokenizer",
+    "qlora-model",
+]

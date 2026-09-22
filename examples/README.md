@@ -31,7 +31,7 @@ a frozen NF4 base plus a trainable adapter fitting a rank-4 task delta,
 qlora-python/.venv/bin/python examples/train_qlora_layer.py [--use-gpu]
 ```
 
-## Per-crate examples (run from inside each crate dir, no root workspace)
+## Per-crate examples (also reachable via `cargo run -p <crate> --example <name>` from the root workspace)
 
 * `qlora-model/examples/train_smollm.rs` — what the sh script above wraps
 * `qlora-core/examples/` — `train_lora` (single-layer LoRA regression,

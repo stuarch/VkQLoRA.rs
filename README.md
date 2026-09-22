@@ -13,8 +13,9 @@ Y = X · dequant(W_q)^T + (alpha / r) · (X · A^T) · B^T
 
 ## Project structure
 
-Independent crates (each builds on its own; the root deliberately has no
-workspace so the zero-dependency `qlora-core` always builds offline):
+Six crates under one cargo workspace (root `Cargo.toml`, virtual manifest).
+Each crate also builds standalone from its own directory, so the
+zero-dependency `qlora-core` always builds offline:
 
 | Directory | Description | Dependencies |
 |---|---|---|
@@ -40,7 +41,10 @@ packing layout and
 # Enter the dev environment (rustc/cargo, python, maturin, vulkan-loader, mesa…)
 guix shell -f guix.scm
 
-# Inside the shell:
+# Inside the shell — whole workspace from the root:
+cargo test --offline                           # everything at once
+cargo test -p qlora-core                       # or one crate
+# Per-crate standalone still works too:
 cd qlora-core && cargo test --offline          # zero deps, works offline
 cd ../qlora-wgpu && cargo test                 # needs network for wgpu (first time)
 cd ../qlora-python && maturin develop          # needs a venv first (next section)
@@ -127,7 +131,7 @@ Runnable cross-crate examples live in [`examples/`](examples/README.md):
 
 ## Verification status (measured 2026-09-22)
 
-* `qlora-core`: **23 tests** (unit 6 + optim 4 + qlora 5 + quant 7 +
+* `qlora-core`: **24 tests** (unit 6 + optim 4 + qlora 6 + quant 7 +
   doctest 1) all green, `cargo clippy` zero warnings, `cargo fmt --check`
   clean, runs offline; `examples/train_lora` 20 steps, loss 0.257 → ~0.05.
 * `qlora-wgpu`: builds, clippy/fmt clean; **3 tests** pass on the **real GPU
