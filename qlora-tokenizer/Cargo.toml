@@ -1,0 +1,17 @@
+[package]
+name = "qlora-tokenizer"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.73"
+description = "Zero-dependency (except regex) BPE tokenizer from tokenizer.json"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "qlora_tokenizer"
+path = "src/lib.rs"
+
+[dependencies]
+# fancy-regex (not regex): the GPT-2 split pattern needs look-ahead
+# `(?!\S)` with backtracking semantics identical to Python `re`.
+# The `regex` crate rejects look-around outright.
+fancy-regex = "0.14"

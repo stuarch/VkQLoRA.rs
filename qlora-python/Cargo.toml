@@ -1,0 +1,18 @@
+[package]
+name = "qlora-python"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.76"
+description = "Python bindings (PyO3/maturin) for the qlora QLoRA library"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "qlora_wgpu"
+path = "src/lib.rs"
+crate-type = ["cdylib"]
+
+[dependencies]
+qlora-core = { path = "../qlora-core", version = "0.1" }
+# Renamed: the extension module itself is also called `qlora_wgpu`.
+qlora-wgpu-backend = { package = "qlora-wgpu", path = "../qlora-wgpu", version = "0.1" }
+pyo3 = { version = "0.22", features = ["extension-module"] }

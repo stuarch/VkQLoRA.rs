@@ -1,0 +1,14 @@
+/target/
+**/target/
+/models/
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.so
+*.egg-info/
+dist/
+build/
+.vscode/
+.idea/
+*.log

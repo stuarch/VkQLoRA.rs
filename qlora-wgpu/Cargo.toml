@@ -1,0 +1,17 @@
+[package]
+name = "qlora-wgpu"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.76"
+description = "WGPU backend for QLoRA ops: GPU dequantize + GEMM kernels with CPU fallback"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "qlora_wgpu"
+path = "src/lib.rs"
+
+[dependencies]
+qlora-core = { path = "../qlora-core", version = "0.1" }
+wgpu = "22"
+pollster = "0.3"
+bytemuck = { version = "1", features = ["derive"] }

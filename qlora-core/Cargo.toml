@@ -1,0 +1,14 @@
+[package]
+name = "qlora-core"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.73"
+description = "CPU reference implementation of QLoRA ops: NF4 quantization, LoRA, fused QLoRA linear"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "qlora_core"
+path = "src/lib.rs"
+
+[features]
+default = []

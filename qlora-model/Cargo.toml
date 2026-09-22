@@ -1,0 +1,18 @@
+[package]
+name = "qlora-model"
+version = "0.1.0"
+edition = "2021"
+rust-version = "1.73"
+description = "Llama-architecture forward pass (SmolLM) over qlora-io weights"
+license = "MIT OR Apache-2.0"
+
+[lib]
+name = "qlora_model"
+path = "src/lib.rs"
+
+[dependencies]
+qlora-core = { path = "../qlora-core", version = "0.1" }
+qlora-io = { path = "../qlora-io", version = "0.1" }
+
+[dev-dependencies]
+qlora-tokenizer = { path = "../qlora-tokenizer", version = "0.1" }
