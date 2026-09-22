@@ -4,7 +4,7 @@ version = "0.1.0"
 edition = "2021"
 rust-version = "1.73"
 description = "Zero-dependency NumPy .npy/.npz reader and writer for qlora weight interchange"
-license = "MIT OR Apache-2.0"
+license = "MIT"
 
 [lib]
 name = "qlora_io"
